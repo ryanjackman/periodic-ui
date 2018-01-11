@@ -23,9 +23,8 @@ const CardText = styled.h1`
 `;
 
 const ElementDetails = styled.div`
-  float: right;
-  width: 100%;
-  backgroud-color: #999999;
+  float: left;
+  width: 50%;
 `;
 
 const category_color = [
@@ -132,6 +131,8 @@ class Element extends Component {
           {this.formatAbundances(num)}
           {this.formatIonizationEnergies(num)}
           <p>Valence: {elementData.valence[num]}</p>
+          </ElementDetails>
+          <ElementDetails>
           <strong>Density</strong>
           <div style={{"margin-left": "2em"}}>
             <p>STP: {elementData.density.stp[num]} kg/m<sup>3</sup></p>
@@ -154,6 +155,8 @@ class Element extends Component {
             <p>Thermal: {elementData.conductivity.thermal[num]} W/mK</p>
             <p>Electric: {elementData.conductivity.electric[num]} MS/m</p>
           </div>
+          <p>Melting Point: {elementData.melt[num]} K</p>
+          <p>Boiling Point: {elementData.boil[num]} K</p>
         </ElementDetails>
         <div />
       </ElementPage>
