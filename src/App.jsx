@@ -71,13 +71,12 @@ class App extends Component {
     window.removeEventListener('touchstart', this.handleTouchStart.bind(this), false);
     window.removeEventListener('touchmove', this.handleTouchMove.bind(this), false);
 
-
     window.removeEventListener("keydown", this.handleKeyPress.bind(this), false);
   }
 
   render() {
     return (
-      <div>
+      <div style={{"max-width": 1024, "max-height": 800, "margin": "0 auto"}}>
         <Element num={this.state.element} />
       </div>
     );

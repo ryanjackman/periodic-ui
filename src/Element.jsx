@@ -3,14 +3,18 @@ import elementData from './moredata.json';
 import styled from 'styled-components';
 import ordinal from 'ordinal';
 
+import Abundance from './Abundance';
+
 const ElementPage = styled.div`
-  margin-left: 250px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  background-color: #EEEEEE;
 `;
 
 const ElementCard = styled.div`
-  float: left;
-  width: 200px;
-  margin-left: -250px;
+  flex-basis: 200px;
   height: 200px;
   background-color: ${props => props.color};
   border: 10px double white;
@@ -23,8 +27,10 @@ const CardText = styled.h1`
 `;
 
 const ElementDetails = styled.div`
-  float: left;
-  width: 50%;
+  flex: 1 0 auto;
+  margin: 10px 10px 10px 10px;
+  text-align: ${props => props.right ? "right" : 'none'};
+  max-width: calc(512px - 110px);
 `;
 
 const category_color = [
@@ -66,22 +72,6 @@ class Element extends Component {
     return <p>Discovered: {formattedYear}</p>;
   }
 
-  formatAbundances(num) {
-    return (
-      <div>
-        <strong>Abundance</strong>
-        <div style={{"margin-left": "2em"}}>
-          <p>Universe: {elementData.abundance.universe[num]}%</p>
-          <p>Solar System: {elementData.abundance.solar[num]}%</p>
-          <p>Meteor: {elementData.abundance.meteor[num]}%</p>
-          <p>Crust: {elementData.abundance.crust[num]}%</p>
-          <p>Ocean: {elementData.abundance.ocean[num]}%</p>
-          <p>Human: {elementData.abundance.human[num]}%</p>
-        </div>
-      </div>
-    );
-  }
-
   formatIonizationEnergies(num) {
     let ionizations = [];
 
@@ -105,12 +95,7 @@ class Element extends Component {
     const num = this.props.num;
     return (
       <ElementPage>
-        <ElementCard color={category_color[elementData.category[num]]}>
-          <CardText size={28}>{elementData.name[num]}</CardText>
-          <CardText size={95}>{elementData.symbol[num]}</CardText>
-          <CardText>{elementData.mass[num]}</CardText>
-        </ElementCard>
-        <ElementDetails>
+        <ElementDetails right>
           <p>Category: {category_name[elementData.category[num]]}</p>
           <p>Electronegativity: {elementData.electroneg[num]}</p>
           {this.formatDiscoveryYear(num)}
@@ -128,10 +113,15 @@ class Element extends Component {
             <p>Covalent: {elementData.radius.covalent[num]} pm</p>
             <p>Van der Waals: {elementData.radius.vanderwaals[num]} pm</p>
           </div>
-          {this.formatAbundances(num)}
+          <Abundance num={num} />
           {this.formatIonizationEnergies(num)}
           <p>Valence: {elementData.valence[num]}</p>
           </ElementDetails>
+          <ElementCard color={category_color[elementData.category[num]]}>
+            <CardText size={28}>{elementData.name[num]}</CardText>
+            <CardText size={95}>{elementData.symbol[num]}</CardText>
+            <CardText>{elementData.mass[num]}</CardText>
+          </ElementCard>
           <ElementDetails>
           <strong>Density</strong>
           <div style={{"margin-left": "2em"}}>
