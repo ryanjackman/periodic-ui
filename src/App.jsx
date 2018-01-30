@@ -76,7 +76,7 @@ class App extends Component {
 
   render() {
     return (
-      <div style={{"max-width": 1024, "max-height": 800, "margin": "0 auto"}}>
+      <div style={{"max-width": 1024, "max-height": 800, "margin": "0 auto", "background-color": "#EEEEEE"}}>
         <Element num={this.state.element} />
       </div>
     );

@@ -10,7 +10,7 @@ const ElementPage = styled.div`
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: space-between;
-  background-color: #EEEEEE;
+  background-color: #FFFFFF;
 `;
 
 const ElementCard = styled.div`
@@ -31,6 +31,14 @@ const ElementDetails = styled.div`
   margin: 10px 10px 10px 10px;
   text-align: ${props => props.right ? "right" : 'none'};
   max-width: calc(512px - 110px);
+  display: flex;
+  flex-direction: column;
+  align-items: ${props => props.right ? "flex-end" : 'flex-begin'};
+`;
+
+const DetailCard = styled.div`
+  text-align: left;
+  display: inline-block;
 `;
 
 const category_color = [
@@ -96,26 +104,44 @@ class Element extends Component {
     return (
       <ElementPage>
         <ElementDetails right>
-          <p>Category: {category_name[elementData.category[num]]}</p>
-          <p>Electronegativity: {elementData.electroneg[num]}</p>
-          {this.formatDiscoveryYear(num)}
+          <DetailCard>
+            <p>Category: {category_name[elementData.category[num]]}</p>
+          </DetailCard>
+          <DetailCard>
+            <p>Electronegativity: {elementData.electroneg[num]}</p>
+          </DetailCard>
+          <DetailCard>
+            {this.formatDiscoveryYear(num)}
+          </DetailCard>
+          <DetailCard>
           <p>Electron Affinity: {elementData.affinity[num]} kJ/mol</p>
-          <strong>Heat</strong>
-          <div style={{"margin-left": "2em"}}>
-            <p>Specific: {elementData.heat.specific[num]} J/kg/K</p>
-            <p>Vaporization: {elementData.heat.vaporization[num]} kJ/mol</p>
-            <p>Fusion: {elementData.heat.fusion[num]} kJ/mol</p>
-          </div>
-          <strong>Radius</strong>
-          <div style={{"margin-left": "2em"}}>
-            <p>Calculated: {elementData.radius.calculated[num]} pm</p>
-            <p>Empirical: {elementData.radius.empirical[num]} pm</p>
-            <p>Covalent: {elementData.radius.covalent[num]} pm</p>
-            <p>Van der Waals: {elementData.radius.vanderwaals[num]} pm</p>
-          </div>
-          <Abundance num={num} />
-          {this.formatIonizationEnergies(num)}
-          <p>Valence: {elementData.valence[num]}</p>
+          </DetailCard>
+          <DetailCard>
+            <strong style={{"text-align": "right"}}>Heat</strong>
+            <div style={{"margin-left": "2em"}}>
+              <p>Specific: {elementData.heat.specific[num]} J/kg/K</p>
+              <p>Vaporization: {elementData.heat.vaporization[num]} kJ/mol</p>
+              <p>Fusion: {elementData.heat.fusion[num]} kJ/mol</p>
+            </div>
+          </DetailCard>
+          <DetailCard>
+            <strong>Radius</strong>
+            <div style={{"margin-left": "2em"}}>
+              <p>Calculated: {elementData.radius.calculated[num]} pm</p>
+              <p>Empirical: {elementData.radius.empirical[num]} pm</p>
+              <p>Covalent: {elementData.radius.covalent[num]} pm</p>
+              <p>Van der Waals: {elementData.radius.vanderwaals[num]} pm</p>
+            </div>
+          </DetailCard>
+          <DetailCard>
+            <Abundance num={num} />
+          </DetailCard>
+          <DetailCard>
+            {this.formatIonizationEnergies(num)}
+          </DetailCard>
+          <DetailCard>
+            <p>Valence: {elementData.valence[num]}</p>
+          </DetailCard>
           </ElementDetails>
           <ElementCard color={category_color[elementData.category[num]]}>
             <CardText size={28}>{elementData.name[num]}</CardText>
@@ -148,7 +174,6 @@ class Element extends Component {
           <p>Melting Point: {elementData.melt[num]} K</p>
           <p>Boiling Point: {elementData.boil[num]} K</p>
         </ElementDetails>
-        <div />
       </ElementPage>
     );
   }
