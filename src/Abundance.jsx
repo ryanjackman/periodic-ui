@@ -23,6 +23,10 @@ const Text = styled.p`
   width: 200px;
 `;
 
+const Indent = styled.div`
+  margin-left: 2em;
+`;
+
 class Abundance extends Component {
 
   getAbundance(num, area) {
@@ -37,14 +41,14 @@ class Abundance extends Component {
     return (
       <div>
         <strong>Abundance</strong>
-        <div style={{"margin-left": "2em"}}>
+        <Indent>
           <Text><Icon src={universe} />Universe: {this.getAbundance(num, 'universe')}</Text><br/>
           <Icon src={solar} /><Text>Solar System: {this.getAbundance(num, 'solar')}</Text><br/>
           <Icon src={meteor} /><Text>Meteor: {this.getAbundance(num, 'meteor')}</Text><br/>
           <Icon src={crust} /><Text>Crust: {this.getAbundance(num, 'crust')}</Text><br/>
           <Icon src={ocean} /><Text>Ocean: {this.getAbundance(num, 'ocean')}</Text><br/>
           <Icon src={human} /><Text>Human: {this.getAbundance(num, 'human')}</Text><br/>
-        </div>
+        </Indent>
       </div>
     );
   }

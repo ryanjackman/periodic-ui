@@ -19,3 +19,11 @@ To run this project:
 ---
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
+
+---
+
+Links for my own benefit
+
+http://builder.swillkb.com/
+http://www.keyboard-layout-editor.com/#/gists/15e199066dcc7dace2983988a8c71a6e
+https://deskthority.net/workshop-f7/brownfox-step-by-step-t6050.html

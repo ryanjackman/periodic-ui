@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Element from './Element';
+import Table from './Table';
 
 let xDown = null;
 let yDown = null;
@@ -25,11 +26,13 @@ class App extends Component {
   }
 
   handleKeyPress(event) {
+    console.log("yes");
     if (event.code === 'ArrowLeft') {
       this.previousElement();
     } else if (event.code === 'ArrowRight') {
       this.nextElement();
     }
+
   }
 
   handleTouchStart(evt) {
@@ -64,20 +67,22 @@ class App extends Component {
     window.addEventListener('touchstart', this.handleTouchStart.bind(this), false);
     window.addEventListener('touchmove', this.handleTouchMove.bind(this), false);
 
-    window.addEventListener("keydown", this.handleKeyPress.bind(this), false);
+    //window.addEventListener("keydown", this.handleKeyPress.bind(this), false);
   }
 
   componentWillUnmount() {
     window.removeEventListener('touchstart', this.handleTouchStart.bind(this), false);
     window.removeEventListener('touchmove', this.handleTouchMove.bind(this), false);
 
-    window.removeEventListener("keydown", this.handleKeyPress.bind(this), false);
+    //window.removeEventListener("keydown", this.handleKeyPress.bind(this), false);
   }
 
   render() {
     return (
-      <div style={{"max-width": 1024, "max-height": 800, "margin": "0 auto", "background-color": "#EEEEEE"}}>
-        <Element num={this.state.element} />
+      <div style={{"width": 1024, "height": 600, "margin": "0 auto", "backgroundColor": "#FFFFFF"}}
+        onKeyPress={this.handleKeyPress.bind(this)}>
+        {/*<Element num={this.state.element} />*/}
+        <Table />
       </div>
     );
   }

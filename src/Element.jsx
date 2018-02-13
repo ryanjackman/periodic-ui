@@ -21,9 +21,16 @@ const ElementCard = styled.div`
   text-align: center
 `;
 
+const ElementSymbol = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+`;
+
 const CardText = styled.h1`
   font-size: ${props => props.size ? props.size + 'px' : '2em'};
-  margin: 5px 0;
+  margin: 4px 0;
 `;
 
 const ElementDetails = styled.div`
@@ -39,6 +46,10 @@ const ElementDetails = styled.div`
 const DetailCard = styled.div`
   text-align: left;
   display: inline-block;
+`;
+
+const Indent = styled.div`
+  margin-left: 2em;
 `;
 
 const category_color = [
@@ -117,21 +128,21 @@ class Element extends Component {
           <p>Electron Affinity: {elementData.affinity[num]} kJ/mol</p>
           </DetailCard>
           <DetailCard>
-            <strong style={{"text-align": "right"}}>Heat</strong>
-            <div style={{"margin-left": "2em"}}>
+            <strong>Heat</strong>
+            <Indent>
               <p>Specific: {elementData.heat.specific[num]} J/kg/K</p>
               <p>Vaporization: {elementData.heat.vaporization[num]} kJ/mol</p>
               <p>Fusion: {elementData.heat.fusion[num]} kJ/mol</p>
-            </div>
+            </Indent>
           </DetailCard>
           <DetailCard>
             <strong>Radius</strong>
-            <div style={{"margin-left": "2em"}}>
+            <Indent>
               <p>Calculated: {elementData.radius.calculated[num]} pm</p>
               <p>Empirical: {elementData.radius.empirical[num]} pm</p>
               <p>Covalent: {elementData.radius.covalent[num]} pm</p>
               <p>Van der Waals: {elementData.radius.vanderwaals[num]} pm</p>
-            </div>
+            </Indent>
           </DetailCard>
           <DetailCard>
             <Abundance num={num} />
@@ -145,32 +156,36 @@ class Element extends Component {
           </ElementDetails>
           <ElementCard color={category_color[elementData.category[num]]}>
             <CardText size={28}>{elementData.name[num]}</CardText>
-            <CardText size={95}>{elementData.symbol[num]}</CardText>
+            <ElementSymbol>
+              <h1 style={{"minWidth": "25px"}}>{num}</h1>
+              <CardText size={95}>{elementData.symbol[num]}</CardText>
+              <div style={{"minWidth": "25px"}}></div>
+            </ElementSymbol>
             <CardText>{elementData.mass[num]}</CardText>
           </ElementCard>
           <ElementDetails>
           <strong>Density</strong>
-          <div style={{"margin-left": "2em"}}>
+          <Indent>
             <p>STP: {elementData.density.stp[num]} kg/m<sup>3</sup></p>
             <p>Liquid: {elementData.density.liquid[num]} kg/m<sup>3</sup></p>
-          </div>
+          </Indent>
           <strong>Hardness</strong>
-          <div style={{"margin-left": "2em"}}>
+          <Indent>
             <p>Brinell: {elementData.hardness.brinell[num]} Mpa</p>
             <p>Mohs: {elementData.hardness.mohs[num]}</p>
             <p>Vickers: {elementData.hardness.vickers[num]} Mpa</p>
-          </div>
+          </Indent>
           <strong>Modulus</strong>
-          <div style={{"margin-left": "2em"}}>
+          <Indent>
             <p>Bulk: {elementData.modulus.bulk[num]} GPa</p>
             <p>Shear: {elementData.modulus.shear[num]} GPa</p>
             <p>Young: {elementData.modulus.young[num]} GPa</p>
-          </div>
+          </Indent>
           <strong>Conductivity</strong>
-          <div style={{"margin-left": "2em"}}>
+          <Indent>
             <p>Thermal: {elementData.conductivity.thermal[num]} W/mK</p>
             <p>Electric: {elementData.conductivity.electric[num]} MS/m</p>
-          </div>
+          </Indent>
           <p>Melting Point: {elementData.melt[num]} K</p>
           <p>Boiling Point: {elementData.boil[num]} K</p>
         </ElementDetails>
