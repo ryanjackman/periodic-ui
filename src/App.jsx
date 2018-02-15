@@ -79,7 +79,7 @@ class App extends Component {
 
   render() {
     return (
-      <div style={{"width": 1024, "height": 600, "margin": "0 auto", "backgroundColor": "#FFFFFF"}}
+      <div style={{"maxWidth": 1024, "height": 600, "margin": "0 auto", "backgroundColor": "#FFFFFF"}}
         onKeyPress={this.handleKeyPress.bind(this)}>
         {/*<Element num={this.state.element} />*/}
         <Table />
