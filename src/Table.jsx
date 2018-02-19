@@ -60,6 +60,13 @@ const Title = styled.div`
   margin-left: 15%;
   top: 2.5vw;
   font-size: 10vw;
+
+  // Fixed title size and position past 1024px
+  @media screen and (min-width: 1025px) {
+    font-size: 102.4px;
+    margin-left: 153.594px;
+    top: 25.6px;
+  }
 `;
 
 class Table extends Component {
@@ -72,9 +79,9 @@ class Table extends Component {
           Object.keys(elementData.symbol).map((num, i) => {
             const element = <Element color={category_color[elementData.category[num]]}>{elementData.symbol[num]}</Element>
             // Lanthanide positioning
-            if(elementData.category[num] === 3 && parseInt(num) !== 57) {
+            if(elementData.category[num] === 3 && parseInt(num, 10) !== 57) {
               return <ElementContainer row={9} height={1} key={i}>{element}</ElementContainer>
-            } else if (elementData.category[num] === 4  && parseInt(num) !== 89) {
+            } else if (elementData.category[num] === 4  && parseInt(num, 10) !== 89) {
               //Actinide positioning
               return <ElementContainer row={10} height={1} key={i}>{element}</ElementContainer>
             } else {
