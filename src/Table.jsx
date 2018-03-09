@@ -78,15 +78,19 @@ class Table extends Component {
         {
           Object.keys(elementData.symbol).map((num, i) => {
             const element = <Element color={category_color[elementData.category[num]]}>{elementData.symbol[num]}</Element>
+            let container_props = {}
+            container_props.key = i;
+
             // Lanthanide positioning
             if(elementData.category[num] === 3 && parseInt(num, 10) !== 57) {
-              return <ElementContainer row={9} height={1} key={i}>{element}</ElementContainer>
+              container_props.row = 9;
+              container_props.height = 1;
             } else if (elementData.category[num] === 4  && parseInt(num, 10) !== 89) {
               //Actinide positioning
-              return <ElementContainer row={10} height={1} key={i}>{element}</ElementContainer>
-            } else {
-              return <ElementContainer key={i}>{element}</ElementContainer>
+              container_props.row = 10;
+              container_props.height = 1
             }
+              return <ElementContainer onClick={() => {this.props.changeElementHandler(i+1)}} {...container_props}>{element}</ElementContainer>
           })
         }
         <Space col={2} colend={18} row={1} rowend={1}>{" "}</Space>

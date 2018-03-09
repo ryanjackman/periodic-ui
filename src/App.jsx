@@ -77,12 +77,16 @@ class App extends Component {
     //window.removeEventListener("keydown", this.handleKeyPress.bind(this), false);
   }
 
+  changeElement(num) {
+    console.log(num);
+  }
+
   render() {
     return (
       <div style={{"maxWidth": 1024, "height": 600, "margin": "0 auto", "backgroundColor": "#FFFFFF"}}
         onKeyPress={this.handleKeyPress.bind(this)}>
         {/*<Element num={this.state.element} />*/}
-        <Table />
+        <Table changeElementHandler={this.changeElement}/>
       </div>
     );
   }
