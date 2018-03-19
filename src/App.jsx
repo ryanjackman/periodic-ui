@@ -10,7 +10,7 @@ class App extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {element: 1};
+    this.state = {table: true, element: 1};
   }
 
   nextElement() {
@@ -67,26 +67,33 @@ class App extends Component {
     window.addEventListener('touchstart', this.handleTouchStart.bind(this), false);
     window.addEventListener('touchmove', this.handleTouchMove.bind(this), false);
 
-    //window.addEventListener("keydown", this.handleKeyPress.bind(this), false);
+    window.addEventListener("keydown", this.handleKeyPress.bind(this), false);
   }
 
   componentWillUnmount() {
     window.removeEventListener('touchstart', this.handleTouchStart.bind(this), false);
     window.removeEventListener('touchmove', this.handleTouchMove.bind(this), false);
 
-    //window.removeEventListener("keydown", this.handleKeyPress.bind(this), false);
+    window.removeEventListener("keydown", this.handleKeyPress.bind(this), false);
   }
 
   changeElement(num) {
-    console.log(num);
+    this.setState({table: false, element: num});
+  }
+
+  returnToTable() {
+    this.setState({table: true});
   }
 
   render() {
     return (
       <div style={{"maxWidth": 1024, "height": 600, "margin": "0 auto", "backgroundColor": "#FFFFFF"}}
         onKeyPress={this.handleKeyPress.bind(this)}>
-        {/*<Element num={this.state.element} />*/}
-        <Table changeElementHandler={this.changeElement}/>
+        {this.state.table ?
+          <Table changeElementHandler={this.changeElement.bind(this)}/>
+          :
+          <Element returnHandler={this.returnToTable.bind(this)} num={this.state.element} />
+        }
       </div>
     );
   }

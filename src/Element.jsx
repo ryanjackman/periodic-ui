@@ -154,7 +154,7 @@ class Element extends Component {
             <p>Valence: {elementData.valence[num]}</p>
           </DetailCard>
           </ElementDetails>
-          <ElementCard color={category_color[elementData.category[num]]}>
+          <ElementCard onClick={() => {this.props.returnHandler()}} color={category_color[elementData.category[num]]}>
             <CardText size={28}>{elementData.name[num]}</CardText>
             <ElementSymbol>
               <h1 style={{"minWidth": "25px"}}>{num}</h1>
